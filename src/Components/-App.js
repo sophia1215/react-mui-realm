@@ -6,7 +6,6 @@ import { muscles, exercises } from "../store.js"
 class App extends Component {
   state = {
     exercises,
-    // category: "arms"
     exercise: {}
   }
 
@@ -40,7 +39,7 @@ class App extends Component {
   render() {
     // console.log(this.getExercisesByMuscles())
     const exercises = this.getExercisesByMuscles(),
-      { category, exercise } = this.state
+      { category } = this.state
 
     return (
       <Fragment>
@@ -56,7 +55,7 @@ class App extends Component {
         <Footer 
           category = { category }
           muscles = { muscles }
-          onSelect={ this.handleCategorySelected }
+          onSelect = { this.handleCategorySelected }
         />
       </Fragment>
     );
