@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { Header, Footer } from "./Layouts";
 import Exercises from "./Exercises"
 import { muscles, exercises } from "../store.js"
@@ -6,7 +7,6 @@ import { muscles, exercises } from "../store.js"
 class App extends Component {
   state = {
     exercises,
-    // category: "arms"
     exercise: {}
   }
 
@@ -16,7 +16,7 @@ class App extends Component {
       [category]: []
     }), {})
 
-    console.log(muscles, initExercises)
+    // console.log(muscles, initExercises)
 
     return Object.entries(
       this.state.exercises.reduce((exercises, exercise) => {
@@ -53,10 +53,10 @@ class App extends Component {
     }))
 
   handleExerciseDelete = id =>
-    this.setState(({ exercises }) => ({
+    this.setState(({ exercises, exercise, editMode }) => ({
       exercises: exercises.filter(ex => ex.id !== id),
-      editMode: false,
-      exercise: {}
+      editMode: exercise.id === id ? false : editMode,
+      exercise: exercise.id === id ? {} : exercise
     }))
 
   handleExerciseSelectEdit = id =>
@@ -81,6 +81,8 @@ class App extends Component {
 
     return (
       <Fragment>
+        <CssBaseline />
+        
         <Header 
           muscles = { muscles }
           onExerciseCreate = { this.handleExerciseCreate }

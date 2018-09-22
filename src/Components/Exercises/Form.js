@@ -10,10 +10,14 @@ import {
 } from "@material-ui/core"
 
 
+// const styles = theme => ({
 const styles = theme => ({
   FormControl: {
-    width: 300
-  }
+    width: 250
+  },
+  // xsFormControll: {
+  //   width: 250
+  // }
 })
 
 export default withStyles(styles)(class extends Component {
@@ -22,18 +26,19 @@ export default withStyles(styles)(class extends Component {
   getInitState() {
     const { exercise } = this.props
 
-    return exercise ? exercise : {
-      title: "",
-      description: "",
-      muscles: "",
-    }
+    return exercise 
+      ? exercise 
+      : {
+          title: "",
+          description: "",
+          muscles: "",
+        }
   }
 
-  componentWillReceiveProps({ exercise }) {
-    this.setState({
-      ...exercise
-    })
-  }
+  // componentWillReceiveProps({ exercise }) {
+  // static getDerivedStateFromProps({ exercise }) {
+  //   return exercise || null
+  // }
 
   handleChange = name => ({ target: { value }}) =>
     this.setState({
